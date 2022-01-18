@@ -1,0 +1,22 @@
+service: rss-converter
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  stage: prod
+  region: eu-west-3
+
+plugins:
+  - serverless-offline
+
+
+functions:
+  convert:
+    handler: handler.convert
+    events:
+      - httpApi:
+          path: /convert
+          method: get
