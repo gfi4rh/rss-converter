@@ -15,6 +15,16 @@ module.exports.convert = async (event) => {
 
 let fetchXML = (url, count) => {
 
+  if(count && (count < 1 || count > 10)) {
+    return {
+      statusCode: 400,
+      body : JSON.stringify({
+        status: "error",
+        message: "Parameter count is not correct, it must be between 1 and 10"
+      })
+    }
+  }
+
   return axios.get(url)
     .then(res => parseStringPromise(res.data))
     .then(result => formatJSON(result, count))
