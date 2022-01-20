@@ -20,7 +20,7 @@ let fetchXML = (url, count) => {
     .then(result => formatJSON(result, count))
     .catch(err => {
       return {
-        statusCode: 500,
+        statusCode: 400,
         body : JSON.stringify({
           status: "error",
           message: "Cannot download this RSS feed, make sure the Rss URL is correct."
